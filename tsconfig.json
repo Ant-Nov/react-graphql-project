@@ -7,7 +7,6 @@
   "compilerOptions": {
     "types": ["node"],
     /* Path aliases */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
