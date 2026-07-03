@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# React GraphQL Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live project: https://react-graphql-project.vercel.app/
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This is a React app for searching GitHub users and viewing their public profile data. It queries the GitHub GraphQL API, shows the selected user's profile card and stats, and visualizes repository language, star, and fork data with charts.
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Technology | Purpose |
+| --- | --- |
+| React | Builds the user interface with reusable components. |
+| React DOM | Mounts the React app in the browser. |
+| TypeScript | Adds static typing for components, GraphQL data, and project configuration. |
+| Node.js and npm | Manage dependencies, scripts, and local development commands. |
+| HTML | Provides the root document used by Vite. |
+| Vite | Provides the local dev server, build pipeline, and production bundling. |
+| Vite React plugin | Enables React support in Vite. |
+| GraphQL | Defines the GitHub user query shape. |
+| GitHub GraphQL API | Provides user profile, repository, follower, following, and gist data. |
+| Apollo Client | Handles GraphQL requests, caching, typed queries, and error handling. |
+| GraphQL Code Generator | Generates TypeScript types from the GitHub GraphQL schema and local queries. |
+| dotenv | Loads the GitHub token for code generation from `.env`. |
+| Tailwind CSS | Styles the app with utility classes and theme variables. |
+| Tailwind CSS Vite plugin | Integrates Tailwind CSS with the Vite build. |
+| shadcn/ui | Provides the UI component structure used for buttons, cards, inputs, labels, charts, skeletons, and toast setup. |
+| Radix UI | Supplies accessible UI primitives used through the shadcn component setup. |
+| class-variance-authority | Manages reusable component style variants. |
+| clsx | Combines conditional class names. |
+| tailwind-merge | Merges Tailwind class names without conflicting utilities. |
+| tw-animate-css | Adds animation utilities for the UI layer. |
+| Recharts | Renders bar charts for languages, popular repositories, and forked repositories. |
+| Sonner | Displays toast notifications for form validation. |
+| Remix Icon React | Provides icon components when needed by the UI. |
+| Fontsource Geist | Loads the main app font locally. |
+| Fontsource Noto Sans | Loads the heading font locally. |
+| next-themes | Available for theme management in the shadcn setup. |
+| ESLint | Checks code quality and React-specific rules. |
+| @eslint/js | Provides the base recommended JavaScript lint rules. |
+| typescript-eslint | Adds TypeScript-aware linting support. |
+| eslint-plugin-react-hooks | Enforces React Hooks rules. |
+| eslint-plugin-react-refresh | Checks React Fast Refresh compatibility for Vite. |
+| globals | Provides browser globals for the ESLint configuration. |
+| TypeScript type packages | Provide Node, React, and React DOM type definitions for development. |
+| shadcn CLI | Supports adding and managing shadcn components. |
+| Vercel | Hosts the deployed production app. |
 
-## Expanding the ESLint configuration
+## Environment
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Create a `.env` file with a GitHub token:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_GITHUB_TOKEN=your_github_token
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The app uses this token in the browser for GitHub GraphQL requests, and GraphQL Code Generator uses it to read the GitHub schema.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+npm run codegen
 ```

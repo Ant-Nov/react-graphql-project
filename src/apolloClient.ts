@@ -16,7 +16,7 @@ const errorLink = new ErrorLink(({ error }) => {
 const httpLink = new HttpLink({
   uri: "https://api.github.com/graphql",
   headers: {
-    "Authorization": `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`
+    "Authorization": `Bearer ${import.meta.env.GITHUB_TOKEN}`
   }
 })
 
